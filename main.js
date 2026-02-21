@@ -230,6 +230,11 @@ async function handleAction(e, type) {
         return
     }
 
+    if (type === 'return' && qty > (item.total_quantity - item.available_quantity)) {
+        notify('Error: Cannot return more than what was taken!', 'error')
+        return
+    }
+
     isSubmitting = true
     const btn = e.target.querySelector('button')
     if (btn) btn.disabled = true
