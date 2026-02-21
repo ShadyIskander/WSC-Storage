@@ -39,9 +39,22 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 1.5rem;
     padding: 2.5rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img {
+    height: 100px;
+    width: auto;
+    filter: brightness(0) invert(1);
 }
 
 h1 {

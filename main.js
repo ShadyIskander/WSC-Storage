@@ -51,6 +51,10 @@ const renderGuidedSearch = (type) => {
         <div class="action-card">
             <h2>${title}</h2>
             <form id="action-form">
+            <div class="field">
+                    <label>Your Name</label>
+                    <input type="text" id="user-name" placeholder="Full name" required>
+                </div>
                 <div class="field">
                     <label>${label}</label>
                     <input type="text" id="item-search" placeholder="Type name..." autocomplete="off">
@@ -63,10 +67,6 @@ const renderGuidedSearch = (type) => {
                 <div class="field">
                     <label>How many?</label>
                     <input type="number" id="item-qty" placeholder="Quantity of item?" min="1" required>
-                </div>
-                <div class="field">
-                    <label>Your Name</label>
-                    <input type="text" id="user-name" placeholder="Full name" required>
                 </div>
                 <button type="submit" class="${btnClass}">${btnText}</button>
             </form>
@@ -84,10 +84,14 @@ const renderGuidedSearch = (type) => {
             return
         }
 
-        const filtered = state.equipment.filter(i =>
+        let filtered = state.equipment.filter(i =>
             i.name_en.toLowerCase().includes(query) ||
             (i.name_ar && i.name_ar.includes(query))
         )
+
+        if (type === 'return') {
+            filtered = filtered.filter(i => i.available_quantity < i.total_quantity)
+        }
 
         if (filtered.length > 0) {
             resultsBox.innerHTML = filtered.map(i => `

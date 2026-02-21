@@ -24,18 +24,37 @@ git commit -m "my first commit"
 
 # 4. Point your computer to your GitHub repo
 # Replace <URL> with the one you copied from GitHub
-git remote add origin <URL>
-git remote add origin <https://github.com/ShadyIskander/WSC-Storage.git>
+git remote add origin https://github.com/ShadyIskander/WSC-Storage.git
 
 # 5. Send it to GitHub
 git push -u origin main
 ```
 
-## After that...
-Next time you make changes, you only need to run:
-1. `git add .`
-2. `git commit -m "updated stuff"`
-3. `git push`
+## 3. Connecting to Vercel
+Once your code is on GitHub, follow this to go live:
+1. Go to [Vercel](https://vercel.com) and sign in.
+2. Click **Add New** -> **Project**.
+3. Import your `wsc-storage` repo.
 
-## What about Vercel?
-Once your code is on GitHub, you can just go to Vercel, import that Repo, and follow the same steps as before (don't forget to add your `.env` keys to the Vercel dashboard).
+## 4. Setting your Keys on Vercel (Crucial!)
+Vercel needs your Supabase keys to talk to the database. 
+1. While setting up the project (or in **Settings -> Environment Variables** after), look for the "Environment Variables" section.
+2. Add the first one:
+   - **Key**: `VITE_SUPABASE_URL`
+   - **Value**: (Paste your Supabase URL here)
+3. Click **Add**.
+4. Add the second one:
+   - **Key**: `VITE_SUPABASE_ANON_KEY`
+   - **Value**: (Paste your Supabase Anon Key here)
+5. Click **Add**.
+6. Hit **Deploy**.
+
+***
+
+## Subsequent Updates
+When you make changes later and want to push them to GitHub:
+1. `git add .` (Gather all changes)
+2. `git commit -m "Describe your change"` (Save them with a note)
+3. `git push` (Send them to GitHub)
+
+Vercel will see the push and update your website automatically.
